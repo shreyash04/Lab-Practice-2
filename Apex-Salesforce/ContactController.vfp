@@ -1,0 +1,48 @@
+# Visualforce Page
+
+<apex:page Controller="ContactController" >
+<apex:form >
+
+<apex:pageBlock title="Edit Contact">
+<apex:pageBlockSection columns="1">
+<apex:inputField value="{!c.FirstName}"/>
+<apex:inputField value="{!c.LastName}"/>
+<apex:inputField value="{!c.Email}"/>
+<apex:inputField value="{!c.Birthdate}"/>
+<apex:inputField value="{!c.Department}"/>
+<apex:inputField value="{!c.Phone}"/>
+</apex:pageBlockSection>
+<apex:pageBlockButtons >
+<apex:commandButton action="{!save}" value="Save"/>
+</apex:pageBlockButtons>
+<apex:pageBlockButtons >
+<apex:commandButton action="{!del}" value="Delete"/>
+</apex:pageBlockButtons>
+<apex:pageBlockButtons >
+<apex:commandButton action="{!edit}" value="Update"/>
+</apex:pageBlockButtons>
+<apex:pageBlockTable value="{!samepage}" var="c">
+<apex:column headerValue="First Name">
+<apex:outputField value="{!c.Firstname}"/>
+</apex:column>
+
+<apex:column headerValue="Last Name">
+<apex:outputField value="{!c.Lastname}"/>
+</apex:column> 
+<apex:column headerValue="Email">
+<apex:outputField value="{!c.Email}"/>
+</apex:column>
+<apex:column headerValue="Birthdate">
+<apex:outputField value="{!c.Birthdate}"/>
+</apex:column>
+<apex:column headerValue="Department">
+<apex:outputField value="{!c.Department}"/>
+</apex:column>
+<apex:column headerValue="Phone">
+<apex:outputField value="{!c.Phone}"/>
+</apex:column>
+</apex:pageBlockTable>
+</apex:pageBlock>
+
+</apex:form>
+</apex:page>
