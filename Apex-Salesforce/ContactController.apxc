@@ -1,0 +1,37 @@
+# Apex Class
+
+public class ContactController {
+
+public Contact c { get; set; }
+public List<Contact> samepage { get; set; }
+
+public ContactController(){
+c=new Contact();
+}
+
+public PageReference save() {
+insert c;
+samepage= [select id,FirstName,LastName,Email,Birthdate,Department,Phone from Contact];
+return null;
+}
+public PageReference del(){
+	delete [SELECT FirstName FROM Contact WHERE FirstName=:c.FirstName];
+    samepage= [select id,FirstName,LastName,Email,Birthdate,Department,Phone from Contact];
+    return null;
+}
+public PageReference edit() {
+	List<Contact> conts=[select id, Email,LastName,Birthdate,Department,Phone from Contact where FirstName=:c.FirstName limit 1];
+	if (!conts.isEmpty()){
+        Contact cont=conts[0];
+        cont.Email=c.Email;
+		cont.LastName=c.LastName; 
+        cont.Birthdate=c.Birthdate;
+        cont.Department=c.Department;
+        cont.Phone=c.Phone;
+        update cont;
+	}
+    samepage = [select id,FirstName,LastName,Email,Birthdate,Department,Phone from Contact ];
+    return null;
+	}
+    
+}
